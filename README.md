@@ -45,4 +45,22 @@ node.js 환경에서 실행되기 때문에 `beforeCreate`, `created`에서 `win
 - ES6/ES6+ 변환
 - 웹팩을 비롯한 기타 설정
 
+## asyncData
+- this를 쓰면 nuxt 차원에서 this가 잘못되었다고 안내를 함
+- 페이지 컴포넌트에만 제공되는 속성이다.
+- 데이터를 받아온 다음에 이를 담아서 객체로 그대로 return 한다.
+- 그럼 화면에 바로 연결할 수 있다.
+- 페이지를 진입하기 전에 호출되는 속성이다.
+- 그래서 data같은 this로 접근하는 것이 안된다. => 값이 없다.
+- ? 만약에 가공을 하고 싶으면? => computed나 method로 해야하나
+- 깜빡거림이 전혀없음
+- 서버사이드 렌더링에 가까운 데이터 호출 방식이다.
+- 근데 컴포넌트로 asyncData를 가져가버리네..?
+- 프롭스로 왜 안하지
+- 이러면 에러가 뜸 => 컴포넌트에 asyncData가 Nuxt SSR 레벨에서 에러가 난다.
+- => asyncData는 페이지 컴포넌트에만 유효하다!
 
+## asyncData 속성
+- async asyncData({params, $http}) {...}
+- 뷰 라우터에서 async beforeEnter(to, from, next) { ... } 한 것과 유사하게 동작한다.
+ 
